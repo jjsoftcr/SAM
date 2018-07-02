@@ -90,7 +90,6 @@ namespace SAM.Controllers
                     return View(model);
             }
         }
-
         //
         // GET: /Account/VerifyCode
         [AllowAnonymous]

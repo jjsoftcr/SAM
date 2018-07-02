@@ -25,6 +25,17 @@ namespace SAM.Models
         {
         }
 
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<IdentityUser>().ToTable("Usuarios");
+            modelBuilder.Entity<ApplicationUser>().ToTable("Usuarios");
+            modelBuilder.Entity<IdentityRole>().ToTable("Roles");
+            modelBuilder.Entity<IdentityUserRole>().ToTable("UsuariosRoles");
+            modelBuilder.Entity<IdentityUserClaim>().ToTable("UsuariosReclamos");
+            modelBuilder.Entity<IdentityUserLogin>().ToTable("UsuarioLogin");
+        }
+
         public static ApplicationDbContext Create()
         {
             return new ApplicationDbContext();

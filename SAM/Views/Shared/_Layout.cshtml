@@ -139,18 +139,16 @@
 
                             <a class="nav-link" href="#"><i class="fa fa -cog"></i>Settings</a>
 
-                            <a class="nav-link" href="#"><i class="fa fa-power -off"></i>Logout</a>
+                            <a class="nav-link" href="@Url.Action("LogOff","Home")"><i class="fa fa-power -off"></i>Logout</a>
                         </div>
                     </div>
-
-
-                </div>
+                 </div>
             </div>
 
         </header><!-- /header -->
         <!-- Header-->
 
-        <div class="breadcrumbs">
+        @*<div class="breadcrumbs">
             <div class="col-sm-4">
                 <div class="page-header float-left">
                     <div class="page-title">
@@ -167,7 +165,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>*@
 
         <div class="content mt-3">
             @RenderBody()
