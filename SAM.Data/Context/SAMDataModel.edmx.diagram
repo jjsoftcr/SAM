@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f8b0d90450ab45f782144e3aa2b171ac" Name="Diagram1">
+        <EntityTypeShape EntityType="SAMModel.Cliente" Width="1.5" PointX="8.25" PointY="21" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.clienteTipo" Width="1.5" PointX="6" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.ClienteVehiculo" Width="1.5" PointX="10.5" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.Externo" Width="1.5" PointX="5.25" PointY="17.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.ManoObra" Width="1.5" PointX="5.25" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.Marca" Width="1.5" PointX="3.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.MedioPago" Width="1.5" PointX="5.25" PointY="23.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.Modelo" Width="1.5" PointX="6" PointY="13.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.Parte" Width="1.5" PointX="5.25" PointY="26.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.Proceso" Width="1.5" PointX="5.25" PointY="29.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.Sistemas" Width="1.5" PointX="0.75" PointY="22" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.Taller" Width="1.5" PointX="3" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.TallerParametro" Width="1.5" PointX="5.25" PointY="32.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.TallerSucursal" Width="1.5" PointX="5.25" PointY="35.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.TallerSucursalEstacion" Width="1.5" PointX="7.5" PointY="35.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.TipoFactura" Width="1.5" PointX="11.25" PointY="16.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.Trabajo" Width="1.5" PointX="13.5" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.TrabajoExterno" Width="1.5" PointX="15.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.TrabajoManoObra" Width="1.5" PointX="15.75" PointY="22.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.TrabajoPago" Width="1.5" PointX="18.75" PointY="20.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.TrabajoParte" Width="1.5" PointX="18.75" PointY="24.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SAMModel.Vehiculo" Width="1.5" PointX="8.25" PointY="15.875" IsExpanded="true" />
+        <AssociationConnector Association="SAMModel.FK_Cliente_clienteTipo" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_Cliente_Taller" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_ClienteVehiculo_Cliente1" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_Trabajo_Cliente" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_ClienteVehiculo_Vehiculo1" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_Externo_Taller" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_TrabajoExterno_Externo" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_ManoObra_Taller" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_TrabajoManoObra_ManoObra" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_Modelo_Marca" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_MedioPago_Taller" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_TrabajoPago_MedioPago" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_Vehiculo_Modelo" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_Parte_Taller" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_TrabajoParte_Parte" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_Proceso_Taller" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_TallerParametro_Taller" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_Trabajo_Taller" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_Vehiculo_Taller" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.fkTallerSucursal_Taller" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.fkTallerSucursalEstacion_TallerSucursal" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_Trabajo_TipoFactura" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_Trabajo_Vehiculo" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_TrabajoExterno_Trabajo" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_TrabajoManoObra_Trabajo" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_TrabajoPago_Trabajo" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.FK_TrabajoParte_Trabajo" ManuallyRouted="false" />
+        <AssociationConnector Association="SAMModel.TallerSistemas" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

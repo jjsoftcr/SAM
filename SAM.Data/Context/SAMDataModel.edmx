@@ -1,0 +1,1873 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SAMModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="id_cliente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tipo_cliente" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="apellido" Type="varchar" MaxLength="50" />
+          <Property Name="direccion" Type="varchar" MaxLength="250" />
+          <Property Name="ciudad" Type="varchar" MaxLength="50" />
+          <Property Name="telefono1" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="telefono2" Type="varchar" MaxLength="25" />
+          <Property Name="email" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="clienteTipo">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="tipo_cliente" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="tipo_cliente" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ClienteVehiculo">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_cliente" />
+            <PropertyRef Name="matricula_id" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="id_cliente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="matricula_id" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Externo">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_externo" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="id_externo" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="precio" Type="money" Nullable="false" />
+          <Property Name="detalle" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ManoObra">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_codigo" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="id_codigo" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="precio" Type="money" Nullable="false" />
+          <Property Name="detalle" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="marca_id" />
+          </Key>
+          <Property Name="marca_id" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pais" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedioPago">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_medioPago" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="id_medioPago" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Modelo">
+          <Key>
+            <PropertyRef Name="modelo_id" />
+            <PropertyRef Name="marca_id" />
+          </Key>
+          <Property Name="modelo_id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="marca_id" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Parte">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_parte" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="id_parte" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="80" Nullable="false" />
+          <Property Name="precio" Type="money" Nullable="false" />
+          <Property Name="detalle" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Proceso">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_proceso" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="id_proceso" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="Sistemas">
+          <Key>
+            <PropertyRef Name="id_sistema" />
+          </Key>
+          <Property Name="id_sistema" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Taller">
+          <Key>
+            <PropertyRef Name="id_taller" />
+          </Key>
+          <Property Name="id_taller" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="250" />
+          <Property Name="ciudad" Type="varchar" MaxLength="50" />
+          <Property Name="telefono" Type="varchar" MaxLength="25" />
+          <Property Name="email" Type="varchar" MaxLength="70" />
+          <Property Name="logotipo" Type="image" />
+        </EntityType>
+        <EntityType Name="TallerParametro">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_parametro" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="id_parametro" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="nombre_parametro" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="valor_parametro" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion_parametro" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="TallerSistemas">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_sistema" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="id_sistema" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TallerSucursal">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_taller_sucursal" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="id_taller_sucursal" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" />
+          <Property Name="activa" Type="bit" />
+        </EntityType>
+        <EntityType Name="TallerSucursalEstacion">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_taller_sucursal" />
+            <PropertyRef Name="id_estacion" />
+            <PropertyRef Name="id_usuario_estacion" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="id_taller_sucursal" Type="int" Nullable="false" />
+          <Property Name="id_estacion" Type="int" Nullable="false" />
+          <Property Name="id_usuario_estacion" Type="int" Nullable="false" />
+          <Property Name="activa" Type="bit" />
+        </EntityType>
+        <EntityType Name="TipoFactura">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="tipoFactura" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="tipoFactura" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Trabajo">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_trabajo" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="id_trabajo" Type="int" Nullable="false" />
+          <Property Name="id_cliente" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="matricula_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="creador" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="descripcion" Type="varchar(max)" Nullable="false" />
+          <Property Name="observaciones" Type="varchar(max)" />
+          <Property Name="tipoFactura" Type="int" />
+        </EntityType>
+        <EntityType Name="TrabajoExterno">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_trabajo" />
+            <PropertyRef Name="id_externo" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="id_trabajo" Type="int" Nullable="false" />
+          <Property Name="id_externo" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="precioExtra" Type="money" />
+          <Property Name="cantidad" Type="smallint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrabajoManoObra">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_trabajo" />
+            <PropertyRef Name="id_codigo" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="id_trabajo" Type="int" Nullable="false" />
+          <Property Name="id_codigo" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="precioExtra" Type="money" />
+          <Property Name="cantidad" Type="smallint" Nullable="false" />
+          <Property Name="finalizado" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrabajoPago">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_trabajo" />
+            <PropertyRef Name="id_medioPago" />
+            <PropertyRef Name="id_linea" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="id_trabajo" Type="int" Nullable="false" />
+          <Property Name="id_medioPago" Type="int" Nullable="false" />
+          <Property Name="id_linea" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="monto" Type="money" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TrabajoParte">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_trabajo" />
+            <PropertyRef Name="id_parte" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="id_trabajo" Type="int" Nullable="false" />
+          <Property Name="id_parte" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="precioExtra" Type="money" />
+          <Property Name="cantidad" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Vehiculo">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="matricula_id" />
+          </Key>
+          <Property Name="id_taller" Type="int" Nullable="false" />
+          <Property Name="matricula_id" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="modelo_id" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="marca_id" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="motorcc" Type="varchar" MaxLength="10" />
+          <Property Name="serial" Type="varchar" MaxLength="50" />
+          <Property Name="transmision" Type="int" />
+          <Property Name="tipoGas" Type="int" />
+          <Property Name="color" Type="varchar" MaxLength="20" />
+          <Property Name="aireAc" Type="bit" Nullable="false" />
+          <Property Name="observaciones" Type="varchar(max)" />
+          <Property Name="modelo" Type="varchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Cliente_clienteTipo">
+          <End Role="clienteTipo" Type="Self.clienteTipo" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clienteTipo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="tipo_cliente" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="tipo_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cliente_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClienteVehiculo_Cliente1">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="ClienteVehiculo" Type="Self.ClienteVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="ClienteVehiculo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClienteVehiculo_Vehiculo1">
+          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="1" />
+          <End Role="ClienteVehiculo" Type="Self.ClienteVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="matricula_id" />
+            </Principal>
+            <Dependent Role="ClienteVehiculo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="matricula_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Externo_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="Externo" Type="Self.Externo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="Externo">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManoObra_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="ManoObra" Type="Self.ManoObra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="ManoObra">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedioPago_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="MedioPago" Type="Self.MedioPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="MedioPago">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Modelo_Marca">
+          <End Role="Marca" Type="Self.Marca" Multiplicity="1" />
+          <End Role="Modelo" Type="Self.Modelo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="marca_id" />
+            </Principal>
+            <Dependent Role="Modelo">
+              <PropertyRef Name="marca_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parte_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="Parte" Type="Self.Parte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="Parte">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proceso_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="Proceso" Type="Self.Proceso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="Proceso">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TallerParametro_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="TallerParametro" Type="Self.TallerParametro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="TallerParametro">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajo_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Trabajo" Type="Self.Trabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="Trabajo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajo_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="Trabajo" Type="Self.Trabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="Trabajo">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajo_TipoFactura">
+          <End Role="TipoFactura" Type="Self.TipoFactura" Multiplicity="0..1" />
+          <End Role="Trabajo" Type="Self.Trabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoFactura">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="tipoFactura" />
+            </Principal>
+            <Dependent Role="Trabajo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="tipoFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajo_Vehiculo">
+          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="1" />
+          <End Role="Trabajo" Type="Self.Trabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="matricula_id" />
+            </Principal>
+            <Dependent Role="Trabajo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="matricula_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajoExterno_Externo">
+          <End Role="Externo" Type="Self.Externo" Multiplicity="1" />
+          <End Role="TrabajoExterno" Type="Self.TrabajoExterno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Externo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_externo" />
+            </Principal>
+            <Dependent Role="TrabajoExterno">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_externo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajoExterno_Trabajo">
+          <End Role="Trabajo" Type="Self.Trabajo" Multiplicity="1" />
+          <End Role="TrabajoExterno" Type="Self.TrabajoExterno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_trabajo" />
+            </Principal>
+            <Dependent Role="TrabajoExterno">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_trabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajoManoObra_ManoObra">
+          <End Role="ManoObra" Type="Self.ManoObra" Multiplicity="1" />
+          <End Role="TrabajoManoObra" Type="Self.TrabajoManoObra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManoObra">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_codigo" />
+            </Principal>
+            <Dependent Role="TrabajoManoObra">
+              <PropertyRef Name="id_trabajo" />
+              <PropertyRef Name="id_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajoManoObra_Trabajo">
+          <End Role="Trabajo" Type="Self.Trabajo" Multiplicity="1" />
+          <End Role="TrabajoManoObra" Type="Self.TrabajoManoObra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_trabajo" />
+            </Principal>
+            <Dependent Role="TrabajoManoObra">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_trabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajoPago_MedioPago">
+          <End Role="MedioPago" Type="Self.MedioPago" Multiplicity="1" />
+          <End Role="TrabajoPago" Type="Self.TrabajoPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedioPago">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_medioPago" />
+            </Principal>
+            <Dependent Role="TrabajoPago">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_medioPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajoPago_Trabajo">
+          <End Role="Trabajo" Type="Self.Trabajo" Multiplicity="1" />
+          <End Role="TrabajoPago" Type="Self.TrabajoPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_trabajo" />
+            </Principal>
+            <Dependent Role="TrabajoPago">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_trabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajoParte_Parte">
+          <End Role="Parte" Type="Self.Parte" Multiplicity="1" />
+          <End Role="TrabajoParte" Type="Self.TrabajoParte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parte">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_parte" />
+            </Principal>
+            <Dependent Role="TrabajoParte">
+              <PropertyRef Name="id_trabajo" />
+              <PropertyRef Name="id_parte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajoParte_Trabajo">
+          <End Role="Trabajo" Type="Self.Trabajo" Multiplicity="1" />
+          <End Role="TrabajoParte" Type="Self.TrabajoParte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_trabajo" />
+            </Principal>
+            <Dependent Role="TrabajoParte">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_trabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehiculo_Modelo">
+          <End Role="Modelo" Type="Self.Modelo" Multiplicity="1" />
+          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modelo">
+              <PropertyRef Name="modelo_id" />
+              <PropertyRef Name="marca_id" />
+            </Principal>
+            <Dependent Role="Vehiculo">
+              <PropertyRef Name="modelo_id" />
+              <PropertyRef Name="marca_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehiculo_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="Vehiculo">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkTallerSistemas_sistemas">
+          <End Role="Sistemas" Type="Self.Sistemas" Multiplicity="1" />
+          <End Role="TallerSistemas" Type="Self.TallerSistemas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sistemas">
+              <PropertyRef Name="id_sistema" />
+            </Principal>
+            <Dependent Role="TallerSistemas">
+              <PropertyRef Name="id_sistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkTallerSistemas_taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="TallerSistemas" Type="Self.TallerSistemas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="TallerSistemas">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkTallerSucursal_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="TallerSucursal" Type="Self.TallerSucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="TallerSucursal">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkTallerSucursalEstacion_TallerSucursal">
+          <End Role="TallerSucursal" Type="Self.TallerSucursal" Multiplicity="1" />
+          <End Role="TallerSucursalEstacion" Type="Self.TallerSucursalEstacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TallerSucursal">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_taller_sucursal" />
+            </Principal>
+            <Dependent Role="TallerSucursalEstacion">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_taller_sucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SAMModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="clienteTipo" EntityType="Self.clienteTipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ClienteVehiculo" EntityType="Self.ClienteVehiculo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Externo" EntityType="Self.Externo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ManoObra" EntityType="Self.ManoObra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marca" EntityType="Self.Marca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedioPago" EntityType="Self.MedioPago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Modelo" EntityType="Self.Modelo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Parte" EntityType="Self.Parte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proceso" EntityType="Self.Proceso" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sistemas" EntityType="Self.Sistemas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Taller" EntityType="Self.Taller" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TallerParametro" EntityType="Self.TallerParametro" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TallerSistemas" EntityType="Self.TallerSistemas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TallerSucursal" EntityType="Self.TallerSucursal" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TallerSucursalEstacion" EntityType="Self.TallerSucursalEstacion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TipoFactura" EntityType="Self.TipoFactura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Trabajo" EntityType="Self.Trabajo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrabajoExterno" EntityType="Self.TrabajoExterno" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrabajoManoObra" EntityType="Self.TrabajoManoObra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrabajoPago" EntityType="Self.TrabajoPago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TrabajoParte" EntityType="Self.TrabajoParte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vehiculo" EntityType="Self.Vehiculo" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Cliente_clienteTipo" Association="Self.FK_Cliente_clienteTipo">
+            <End Role="clienteTipo" EntitySet="clienteTipo" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cliente_Taller" Association="Self.FK_Cliente_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClienteVehiculo_Cliente1" Association="Self.FK_ClienteVehiculo_Cliente1">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="ClienteVehiculo" EntitySet="ClienteVehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClienteVehiculo_Vehiculo1" Association="Self.FK_ClienteVehiculo_Vehiculo1">
+            <End Role="Vehiculo" EntitySet="Vehiculo" />
+            <End Role="ClienteVehiculo" EntitySet="ClienteVehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Externo_Taller" Association="Self.FK_Externo_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="Externo" EntitySet="Externo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManoObra_Taller" Association="Self.FK_ManoObra_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="ManoObra" EntitySet="ManoObra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedioPago_Taller" Association="Self.FK_MedioPago_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="MedioPago" EntitySet="MedioPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Modelo_Marca" Association="Self.FK_Modelo_Marca">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Modelo" EntitySet="Modelo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parte_Taller" Association="Self.FK_Parte_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="Parte" EntitySet="Parte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proceso_Taller" Association="Self.FK_Proceso_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="Proceso" EntitySet="Proceso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TallerParametro_Taller" Association="Self.FK_TallerParametro_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="TallerParametro" EntitySet="TallerParametro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajo_Cliente" Association="Self.FK_Trabajo_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Trabajo" EntitySet="Trabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajo_Taller" Association="Self.FK_Trabajo_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="Trabajo" EntitySet="Trabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajo_TipoFactura" Association="Self.FK_Trabajo_TipoFactura">
+            <End Role="TipoFactura" EntitySet="TipoFactura" />
+            <End Role="Trabajo" EntitySet="Trabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajo_Vehiculo" Association="Self.FK_Trabajo_Vehiculo">
+            <End Role="Vehiculo" EntitySet="Vehiculo" />
+            <End Role="Trabajo" EntitySet="Trabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajoExterno_Externo" Association="Self.FK_TrabajoExterno_Externo">
+            <End Role="Externo" EntitySet="Externo" />
+            <End Role="TrabajoExterno" EntitySet="TrabajoExterno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajoExterno_Trabajo" Association="Self.FK_TrabajoExterno_Trabajo">
+            <End Role="Trabajo" EntitySet="Trabajo" />
+            <End Role="TrabajoExterno" EntitySet="TrabajoExterno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajoManoObra_ManoObra" Association="Self.FK_TrabajoManoObra_ManoObra">
+            <End Role="ManoObra" EntitySet="ManoObra" />
+            <End Role="TrabajoManoObra" EntitySet="TrabajoManoObra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajoManoObra_Trabajo" Association="Self.FK_TrabajoManoObra_Trabajo">
+            <End Role="Trabajo" EntitySet="Trabajo" />
+            <End Role="TrabajoManoObra" EntitySet="TrabajoManoObra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajoPago_MedioPago" Association="Self.FK_TrabajoPago_MedioPago">
+            <End Role="MedioPago" EntitySet="MedioPago" />
+            <End Role="TrabajoPago" EntitySet="TrabajoPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajoPago_Trabajo" Association="Self.FK_TrabajoPago_Trabajo">
+            <End Role="Trabajo" EntitySet="Trabajo" />
+            <End Role="TrabajoPago" EntitySet="TrabajoPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajoParte_Parte" Association="Self.FK_TrabajoParte_Parte">
+            <End Role="Parte" EntitySet="Parte" />
+            <End Role="TrabajoParte" EntitySet="TrabajoParte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajoParte_Trabajo" Association="Self.FK_TrabajoParte_Trabajo">
+            <End Role="Trabajo" EntitySet="Trabajo" />
+            <End Role="TrabajoParte" EntitySet="TrabajoParte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehiculo_Modelo" Association="Self.FK_Vehiculo_Modelo">
+            <End Role="Modelo" EntitySet="Modelo" />
+            <End Role="Vehiculo" EntitySet="Vehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehiculo_Taller" Association="Self.FK_Vehiculo_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="Vehiculo" EntitySet="Vehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="fkTallerSistemas_sistemas" Association="Self.fkTallerSistemas_sistemas">
+            <End Role="Sistemas" EntitySet="Sistemas" />
+            <End Role="TallerSistemas" EntitySet="TallerSistemas" />
+          </AssociationSet>
+          <AssociationSet Name="fkTallerSistemas_taller" Association="Self.fkTallerSistemas_taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="TallerSistemas" EntitySet="TallerSistemas" />
+          </AssociationSet>
+          <AssociationSet Name="fkTallerSucursal_Taller" Association="Self.fkTallerSucursal_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="TallerSucursal" EntitySet="TallerSucursal" />
+          </AssociationSet>
+          <AssociationSet Name="fkTallerSucursalEstacion_TallerSucursal" Association="Self.fkTallerSucursalEstacion_TallerSucursal">
+            <End Role="TallerSucursal" EntitySet="TallerSucursal" />
+            <End Role="TallerSucursalEstacion" EntitySet="TallerSucursalEstacion" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SAMModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_cliente" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" />
+          <Property Name="id_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo_cliente" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apellido" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono1" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono2" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="clienteTipo" Relationship="Self.FK_Cliente_clienteTipo" FromRole="Cliente" ToRole="clienteTipo" />
+          <NavigationProperty Name="Taller" Relationship="Self.FK_Cliente_Taller" FromRole="Cliente" ToRole="Taller" />
+          <NavigationProperty Name="ClienteVehiculo" Relationship="Self.FK_ClienteVehiculo_Cliente1" FromRole="Cliente" ToRole="ClienteVehiculo" />
+          <NavigationProperty Name="Trabajo" Relationship="Self.FK_Trabajo_Cliente" FromRole="Cliente" ToRole="Trabajo" />
+        </EntityType>
+        <EntityType Name="clienteTipo">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="tipo_cliente" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" />
+          <Property Name="tipo_cliente" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Cliente_clienteTipo" FromRole="clienteTipo" ToRole="Cliente" />
+        </EntityType>
+        <EntityType Name="ClienteVehiculo">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_cliente" />
+            <PropertyRef Name="matricula_id" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" />
+          <Property Name="id_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="matricula_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_ClienteVehiculo_Cliente1" FromRole="ClienteVehiculo" ToRole="Cliente" />
+          <NavigationProperty Name="Vehiculo" Relationship="Self.FK_ClienteVehiculo_Vehiculo1" FromRole="ClienteVehiculo" ToRole="Vehiculo" />
+        </EntityType>
+        <EntityType Name="Externo">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_externo" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" />
+          <Property Name="id_externo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="detalle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Taller" Relationship="Self.FK_Externo_Taller" FromRole="Externo" ToRole="Taller" />
+          <NavigationProperty Name="TrabajoExterno" Relationship="Self.FK_TrabajoExterno_Externo" FromRole="Externo" ToRole="TrabajoExterno" />
+        </EntityType>
+        <EntityType Name="ManoObra">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_codigo" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" />
+          <Property Name="id_codigo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="detalle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Taller" Relationship="Self.FK_ManoObra_Taller" FromRole="ManoObra" ToRole="Taller" />
+          <NavigationProperty Name="TrabajoManoObra" Relationship="Self.FK_TrabajoManoObra_ManoObra" FromRole="ManoObra" ToRole="TrabajoManoObra" />
+        </EntityType>
+        <EntityType Name="Marca">
+          <Key>
+            <PropertyRef Name="marca_id" />
+          </Key>
+          <Property Name="marca_id" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pais" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Modelo" Relationship="Self.FK_Modelo_Marca" FromRole="Marca" ToRole="Modelo" />
+        </EntityType>
+        <EntityType Name="MedioPago">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_medioPago" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" />
+          <Property Name="id_medioPago" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Taller" Relationship="Self.FK_MedioPago_Taller" FromRole="MedioPago" ToRole="Taller" />
+          <NavigationProperty Name="TrabajoPago" Relationship="Self.FK_TrabajoPago_MedioPago" FromRole="MedioPago" ToRole="TrabajoPago" />
+        </EntityType>
+        <EntityType Name="Modelo">
+          <Key>
+            <PropertyRef Name="modelo_id" />
+            <PropertyRef Name="marca_id" />
+          </Key>
+          <Property Name="modelo_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="marca_id" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Marca" Relationship="Self.FK_Modelo_Marca" FromRole="Modelo" ToRole="Marca" />
+          <NavigationProperty Name="Vehiculo" Relationship="Self.FK_Vehiculo_Modelo" FromRole="Modelo" ToRole="Vehiculo" />
+        </EntityType>
+        <EntityType Name="Parte">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_parte" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" />
+          <Property Name="id_parte" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="80" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precio" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="detalle" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Taller" Relationship="Self.FK_Parte_Taller" FromRole="Parte" ToRole="Taller" />
+          <NavigationProperty Name="TrabajoParte" Relationship="Self.FK_TrabajoParte_Parte" FromRole="Parte" ToRole="TrabajoParte" />
+        </EntityType>
+        <EntityType Name="Proceso">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_proceso" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" />
+          <Property Name="id_proceso" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Taller" Relationship="Self.FK_Proceso_Taller" FromRole="Proceso" ToRole="Taller" />
+        </EntityType>
+        <EntityType Name="Sistemas">
+          <Key>
+            <PropertyRef Name="id_sistema" />
+          </Key>
+          <Property Name="id_sistema" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Taller" Relationship="Self.TallerSistemas" FromRole="Sistemas" ToRole="Taller" />
+        </EntityType>
+        <EntityType Name="Taller">
+          <Key>
+            <PropertyRef Name="id_taller" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="ciudad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="telefono" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="email" Type="String" MaxLength="70" FixedLength="false" Unicode="false" />
+          <Property Name="logotipo" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Cliente_Taller" FromRole="Taller" ToRole="Cliente" />
+          <NavigationProperty Name="Externo" Relationship="Self.FK_Externo_Taller" FromRole="Taller" ToRole="Externo" />
+          <NavigationProperty Name="ManoObra" Relationship="Self.FK_ManoObra_Taller" FromRole="Taller" ToRole="ManoObra" />
+          <NavigationProperty Name="MedioPago" Relationship="Self.FK_MedioPago_Taller" FromRole="Taller" ToRole="MedioPago" />
+          <NavigationProperty Name="Parte" Relationship="Self.FK_Parte_Taller" FromRole="Taller" ToRole="Parte" />
+          <NavigationProperty Name="Proceso" Relationship="Self.FK_Proceso_Taller" FromRole="Taller" ToRole="Proceso" />
+          <NavigationProperty Name="TallerParametro" Relationship="Self.FK_TallerParametro_Taller" FromRole="Taller" ToRole="TallerParametro" />
+          <NavigationProperty Name="Trabajo" Relationship="Self.FK_Trabajo_Taller" FromRole="Taller" ToRole="Trabajo" />
+          <NavigationProperty Name="Vehiculo" Relationship="Self.FK_Vehiculo_Taller" FromRole="Taller" ToRole="Vehiculo" />
+          <NavigationProperty Name="TallerSucursal" Relationship="Self.fkTallerSucursal_Taller" FromRole="Taller" ToRole="TallerSucursal" />
+          <NavigationProperty Name="Sistemas" Relationship="Self.TallerSistemas" FromRole="Taller" ToRole="Sistemas" />
+        </EntityType>
+        <EntityType Name="TallerParametro">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_parametro" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" />
+          <Property Name="id_parametro" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nombre_parametro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="valor_parametro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion_parametro" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Taller" Relationship="Self.FK_TallerParametro_Taller" FromRole="TallerParametro" ToRole="Taller" />
+        </EntityType>
+        <EntityType Name="TallerSucursal">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_taller_sucursal" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" />
+          <Property Name="id_taller_sucursal" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="activa" Type="Boolean" />
+          <NavigationProperty Name="Taller" Relationship="Self.fkTallerSucursal_Taller" FromRole="TallerSucursal" ToRole="Taller" />
+          <NavigationProperty Name="TallerSucursalEstacion" Relationship="Self.fkTallerSucursalEstacion_TallerSucursal" FromRole="TallerSucursal" ToRole="TallerSucursalEstacion" />
+        </EntityType>
+        <EntityType Name="TallerSucursalEstacion">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_taller_sucursal" />
+            <PropertyRef Name="id_estacion" />
+            <PropertyRef Name="id_usuario_estacion" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" />
+          <Property Name="id_taller_sucursal" Type="Int32" Nullable="false" />
+          <Property Name="id_estacion" Type="Int32" Nullable="false" />
+          <Property Name="id_usuario_estacion" Type="Int32" Nullable="false" />
+          <Property Name="activa" Type="Boolean" />
+          <NavigationProperty Name="TallerSucursal" Relationship="Self.fkTallerSucursalEstacion_TallerSucursal" FromRole="TallerSucursalEstacion" ToRole="TallerSucursal" />
+        </EntityType>
+        <EntityType Name="TipoFactura">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="tipoFactura1" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" />
+          <Property Name="tipoFactura1" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Trabajo" Relationship="Self.FK_Trabajo_TipoFactura" FromRole="TipoFactura" ToRole="Trabajo" />
+        </EntityType>
+        <EntityType Name="Trabajo">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_trabajo" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" />
+          <Property Name="id_trabajo" Type="Int32" Nullable="false" />
+          <Property Name="id_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="matricula_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="creador" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="tipoFactura" Type="Int32" />
+          <NavigationProperty Name="Cliente" Relationship="Self.FK_Trabajo_Cliente" FromRole="Trabajo" ToRole="Cliente" />
+          <NavigationProperty Name="Taller" Relationship="Self.FK_Trabajo_Taller" FromRole="Trabajo" ToRole="Taller" />
+          <NavigationProperty Name="TipoFactura1" Relationship="Self.FK_Trabajo_TipoFactura" FromRole="Trabajo" ToRole="TipoFactura" />
+          <NavigationProperty Name="Vehiculo" Relationship="Self.FK_Trabajo_Vehiculo" FromRole="Trabajo" ToRole="Vehiculo" />
+          <NavigationProperty Name="TrabajoExterno" Relationship="Self.FK_TrabajoExterno_Trabajo" FromRole="Trabajo" ToRole="TrabajoExterno" />
+          <NavigationProperty Name="TrabajoManoObra" Relationship="Self.FK_TrabajoManoObra_Trabajo" FromRole="Trabajo" ToRole="TrabajoManoObra" />
+          <NavigationProperty Name="TrabajoPago" Relationship="Self.FK_TrabajoPago_Trabajo" FromRole="Trabajo" ToRole="TrabajoPago" />
+          <NavigationProperty Name="TrabajoParte" Relationship="Self.FK_TrabajoParte_Trabajo" FromRole="Trabajo" ToRole="TrabajoParte" />
+        </EntityType>
+        <EntityType Name="TrabajoExterno">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_trabajo" />
+            <PropertyRef Name="id_externo" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" />
+          <Property Name="id_trabajo" Type="Int32" Nullable="false" />
+          <Property Name="id_externo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precioExtra" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="cantidad" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Externo" Relationship="Self.FK_TrabajoExterno_Externo" FromRole="TrabajoExterno" ToRole="Externo" />
+          <NavigationProperty Name="Trabajo" Relationship="Self.FK_TrabajoExterno_Trabajo" FromRole="TrabajoExterno" ToRole="Trabajo" />
+        </EntityType>
+        <EntityType Name="TrabajoManoObra">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_trabajo" />
+            <PropertyRef Name="id_codigo" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" />
+          <Property Name="id_trabajo" Type="Int32" Nullable="false" />
+          <Property Name="id_codigo" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precioExtra" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="cantidad" Type="Int16" Nullable="false" />
+          <Property Name="finalizado" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ManoObra" Relationship="Self.FK_TrabajoManoObra_ManoObra" FromRole="TrabajoManoObra" ToRole="ManoObra" />
+          <NavigationProperty Name="Trabajo" Relationship="Self.FK_TrabajoManoObra_Trabajo" FromRole="TrabajoManoObra" ToRole="Trabajo" />
+        </EntityType>
+        <EntityType Name="TrabajoPago">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_trabajo" />
+            <PropertyRef Name="id_medioPago" />
+            <PropertyRef Name="id_linea" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" />
+          <Property Name="id_trabajo" Type="Int32" Nullable="false" />
+          <Property Name="id_medioPago" Type="Int32" Nullable="false" />
+          <Property Name="id_linea" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="monto" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <NavigationProperty Name="MedioPago" Relationship="Self.FK_TrabajoPago_MedioPago" FromRole="TrabajoPago" ToRole="MedioPago" />
+          <NavigationProperty Name="Trabajo" Relationship="Self.FK_TrabajoPago_Trabajo" FromRole="TrabajoPago" ToRole="Trabajo" />
+        </EntityType>
+        <EntityType Name="TrabajoParte">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="id_trabajo" />
+            <PropertyRef Name="id_parte" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" />
+          <Property Name="id_trabajo" Type="Int32" Nullable="false" />
+          <Property Name="id_parte" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="precioExtra" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="cantidad" Type="Int16" />
+          <NavigationProperty Name="Parte" Relationship="Self.FK_TrabajoParte_Parte" FromRole="TrabajoParte" ToRole="Parte" />
+          <NavigationProperty Name="Trabajo" Relationship="Self.FK_TrabajoParte_Trabajo" FromRole="TrabajoParte" ToRole="Trabajo" />
+        </EntityType>
+        <EntityType Name="Vehiculo">
+          <Key>
+            <PropertyRef Name="id_taller" />
+            <PropertyRef Name="matricula_id" />
+          </Key>
+          <Property Name="id_taller" Type="Int32" Nullable="false" />
+          <Property Name="matricula_id" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="modelo_id" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="marca_id" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="motorcc" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="serial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="transmision" Type="Int32" />
+          <Property Name="tipoGas" Type="Int32" />
+          <Property Name="color" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="aireAc" Type="Boolean" Nullable="false" />
+          <Property Name="observaciones" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="modelo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ClienteVehiculo" Relationship="Self.FK_ClienteVehiculo_Vehiculo1" FromRole="Vehiculo" ToRole="ClienteVehiculo" />
+          <NavigationProperty Name="Modelo1" Relationship="Self.FK_Vehiculo_Modelo" FromRole="Vehiculo" ToRole="Modelo" />
+          <NavigationProperty Name="Taller" Relationship="Self.FK_Vehiculo_Taller" FromRole="Vehiculo" ToRole="Taller" />
+          <NavigationProperty Name="Trabajo" Relationship="Self.FK_Trabajo_Vehiculo" FromRole="Vehiculo" ToRole="Trabajo" />
+        </EntityType>
+        <Association Name="FK_Cliente_clienteTipo">
+          <End Role="clienteTipo" Type="Self.clienteTipo" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="clienteTipo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="tipo_cliente" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="tipo_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Cliente_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="Cliente">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClienteVehiculo_Cliente1">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="ClienteVehiculo" Type="Self.ClienteVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="ClienteVehiculo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajo_Cliente">
+          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+          <End Role="Trabajo" Type="Self.Trabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="Trabajo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ClienteVehiculo_Vehiculo1">
+          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="1" />
+          <End Role="ClienteVehiculo" Type="Self.ClienteVehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="matricula_id" />
+            </Principal>
+            <Dependent Role="ClienteVehiculo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="matricula_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Externo_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="Externo" Type="Self.Externo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="Externo">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajoExterno_Externo">
+          <End Role="Externo" Type="Self.Externo" Multiplicity="1" />
+          <End Role="TrabajoExterno" Type="Self.TrabajoExterno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Externo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_externo" />
+            </Principal>
+            <Dependent Role="TrabajoExterno">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_externo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ManoObra_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="ManoObra" Type="Self.ManoObra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="ManoObra">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajoManoObra_ManoObra">
+          <End Role="ManoObra" Type="Self.ManoObra" Multiplicity="1" />
+          <End Role="TrabajoManoObra" Type="Self.TrabajoManoObra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ManoObra">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_codigo" />
+            </Principal>
+            <Dependent Role="TrabajoManoObra">
+              <PropertyRef Name="id_trabajo" />
+              <PropertyRef Name="id_codigo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Modelo_Marca">
+          <End Role="Marca" Type="Self.Marca" Multiplicity="1" />
+          <End Role="Modelo" Type="Self.Modelo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marca">
+              <PropertyRef Name="marca_id" />
+            </Principal>
+            <Dependent Role="Modelo">
+              <PropertyRef Name="marca_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MedioPago_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="MedioPago" Type="Self.MedioPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="MedioPago">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajoPago_MedioPago">
+          <End Role="MedioPago" Type="Self.MedioPago" Multiplicity="1" />
+          <End Role="TrabajoPago" Type="Self.TrabajoPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MedioPago">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_medioPago" />
+            </Principal>
+            <Dependent Role="TrabajoPago">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_medioPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehiculo_Modelo">
+          <End Role="Modelo" Type="Self.Modelo" Multiplicity="1" />
+          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Modelo">
+              <PropertyRef Name="modelo_id" />
+              <PropertyRef Name="marca_id" />
+            </Principal>
+            <Dependent Role="Vehiculo">
+              <PropertyRef Name="modelo_id" />
+              <PropertyRef Name="marca_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Parte_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="Parte" Type="Self.Parte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="Parte">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajoParte_Parte">
+          <End Role="Parte" Type="Self.Parte" Multiplicity="1" />
+          <End Role="TrabajoParte" Type="Self.TrabajoParte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Parte">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_parte" />
+            </Principal>
+            <Dependent Role="TrabajoParte">
+              <PropertyRef Name="id_trabajo" />
+              <PropertyRef Name="id_parte" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Proceso_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="Proceso" Type="Self.Proceso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="Proceso">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TallerParametro_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="TallerParametro" Type="Self.TallerParametro" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="TallerParametro">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajo_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="Trabajo" Type="Self.Trabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="Trabajo">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vehiculo_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="Vehiculo">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkTallerSucursal_Taller">
+          <End Role="Taller" Type="Self.Taller" Multiplicity="1" />
+          <End Role="TallerSucursal" Type="Self.TallerSucursal" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Taller">
+              <PropertyRef Name="id_taller" />
+            </Principal>
+            <Dependent Role="TallerSucursal">
+              <PropertyRef Name="id_taller" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fkTallerSucursalEstacion_TallerSucursal">
+          <End Role="TallerSucursal" Type="Self.TallerSucursal" Multiplicity="1" />
+          <End Role="TallerSucursalEstacion" Type="Self.TallerSucursalEstacion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TallerSucursal">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_taller_sucursal" />
+            </Principal>
+            <Dependent Role="TallerSucursalEstacion">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_taller_sucursal" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajo_TipoFactura">
+          <End Role="TipoFactura" Type="Self.TipoFactura" Multiplicity="0..1" />
+          <End Role="Trabajo" Type="Self.Trabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TipoFactura">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="tipoFactura1" />
+            </Principal>
+            <Dependent Role="Trabajo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="tipoFactura" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Trabajo_Vehiculo">
+          <End Role="Vehiculo" Type="Self.Vehiculo" Multiplicity="1" />
+          <End Role="Trabajo" Type="Self.Trabajo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vehiculo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="matricula_id" />
+            </Principal>
+            <Dependent Role="Trabajo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="matricula_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajoExterno_Trabajo">
+          <End Role="Trabajo" Type="Self.Trabajo" Multiplicity="1" />
+          <End Role="TrabajoExterno" Type="Self.TrabajoExterno" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_trabajo" />
+            </Principal>
+            <Dependent Role="TrabajoExterno">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_trabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajoManoObra_Trabajo">
+          <End Role="Trabajo" Type="Self.Trabajo" Multiplicity="1" />
+          <End Role="TrabajoManoObra" Type="Self.TrabajoManoObra" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_trabajo" />
+            </Principal>
+            <Dependent Role="TrabajoManoObra">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_trabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajoPago_Trabajo">
+          <End Role="Trabajo" Type="Self.Trabajo" Multiplicity="1" />
+          <End Role="TrabajoPago" Type="Self.TrabajoPago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_trabajo" />
+            </Principal>
+            <Dependent Role="TrabajoPago">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_trabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TrabajoParte_Trabajo">
+          <End Role="Trabajo" Type="Self.Trabajo" Multiplicity="1" />
+          <End Role="TrabajoParte" Type="Self.TrabajoParte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Trabajo">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_trabajo" />
+            </Principal>
+            <Dependent Role="TrabajoParte">
+              <PropertyRef Name="id_taller" />
+              <PropertyRef Name="id_trabajo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TallerSistemas">
+          <End Role="Sistemas" Type="Self.Sistemas" Multiplicity="*" />
+          <End Role="Taller" Type="Self.Taller" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="clienteTipo" EntityType="Self.clienteTipo" />
+          <EntitySet Name="ClienteVehiculo" EntityType="Self.ClienteVehiculo" />
+          <EntitySet Name="Externo" EntityType="Self.Externo" />
+          <EntitySet Name="ManoObra" EntityType="Self.ManoObra" />
+          <EntitySet Name="Marca" EntityType="Self.Marca" />
+          <EntitySet Name="MedioPago" EntityType="Self.MedioPago" />
+          <EntitySet Name="Modelo" EntityType="Self.Modelo" />
+          <EntitySet Name="Parte" EntityType="Self.Parte" />
+          <EntitySet Name="Proceso" EntityType="Self.Proceso" />
+          <EntitySet Name="Sistemas" EntityType="Self.Sistemas" />
+          <EntitySet Name="Taller" EntityType="Self.Taller" />
+          <EntitySet Name="TallerParametro" EntityType="Self.TallerParametro" />
+          <EntitySet Name="TallerSucursal" EntityType="Self.TallerSucursal" />
+          <EntitySet Name="TallerSucursalEstacion" EntityType="Self.TallerSucursalEstacion" />
+          <EntitySet Name="TipoFactura" EntityType="Self.TipoFactura" />
+          <EntitySet Name="Trabajo" EntityType="Self.Trabajo" />
+          <EntitySet Name="TrabajoExterno" EntityType="Self.TrabajoExterno" />
+          <EntitySet Name="TrabajoManoObra" EntityType="Self.TrabajoManoObra" />
+          <EntitySet Name="TrabajoPago" EntityType="Self.TrabajoPago" />
+          <EntitySet Name="TrabajoParte" EntityType="Self.TrabajoParte" />
+          <EntitySet Name="Vehiculo" EntityType="Self.Vehiculo" />
+          <AssociationSet Name="FK_Cliente_clienteTipo" Association="Self.FK_Cliente_clienteTipo">
+            <End Role="clienteTipo" EntitySet="clienteTipo" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Cliente_Taller" Association="Self.FK_Cliente_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="Cliente" EntitySet="Cliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClienteVehiculo_Cliente1" Association="Self.FK_ClienteVehiculo_Cliente1">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="ClienteVehiculo" EntitySet="ClienteVehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajo_Cliente" Association="Self.FK_Trabajo_Cliente">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Trabajo" EntitySet="Trabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ClienteVehiculo_Vehiculo1" Association="Self.FK_ClienteVehiculo_Vehiculo1">
+            <End Role="Vehiculo" EntitySet="Vehiculo" />
+            <End Role="ClienteVehiculo" EntitySet="ClienteVehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Externo_Taller" Association="Self.FK_Externo_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="Externo" EntitySet="Externo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajoExterno_Externo" Association="Self.FK_TrabajoExterno_Externo">
+            <End Role="Externo" EntitySet="Externo" />
+            <End Role="TrabajoExterno" EntitySet="TrabajoExterno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ManoObra_Taller" Association="Self.FK_ManoObra_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="ManoObra" EntitySet="ManoObra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajoManoObra_ManoObra" Association="Self.FK_TrabajoManoObra_ManoObra">
+            <End Role="ManoObra" EntitySet="ManoObra" />
+            <End Role="TrabajoManoObra" EntitySet="TrabajoManoObra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Modelo_Marca" Association="Self.FK_Modelo_Marca">
+            <End Role="Marca" EntitySet="Marca" />
+            <End Role="Modelo" EntitySet="Modelo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MedioPago_Taller" Association="Self.FK_MedioPago_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="MedioPago" EntitySet="MedioPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajoPago_MedioPago" Association="Self.FK_TrabajoPago_MedioPago">
+            <End Role="MedioPago" EntitySet="MedioPago" />
+            <End Role="TrabajoPago" EntitySet="TrabajoPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehiculo_Modelo" Association="Self.FK_Vehiculo_Modelo">
+            <End Role="Modelo" EntitySet="Modelo" />
+            <End Role="Vehiculo" EntitySet="Vehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Parte_Taller" Association="Self.FK_Parte_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="Parte" EntitySet="Parte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajoParte_Parte" Association="Self.FK_TrabajoParte_Parte">
+            <End Role="Parte" EntitySet="Parte" />
+            <End Role="TrabajoParte" EntitySet="TrabajoParte" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Proceso_Taller" Association="Self.FK_Proceso_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="Proceso" EntitySet="Proceso" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TallerParametro_Taller" Association="Self.FK_TallerParametro_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="TallerParametro" EntitySet="TallerParametro" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajo_Taller" Association="Self.FK_Trabajo_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="Trabajo" EntitySet="Trabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vehiculo_Taller" Association="Self.FK_Vehiculo_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="Vehiculo" EntitySet="Vehiculo" />
+          </AssociationSet>
+          <AssociationSet Name="fkTallerSucursal_Taller" Association="Self.fkTallerSucursal_Taller">
+            <End Role="Taller" EntitySet="Taller" />
+            <End Role="TallerSucursal" EntitySet="TallerSucursal" />
+          </AssociationSet>
+          <AssociationSet Name="fkTallerSucursalEstacion_TallerSucursal" Association="Self.fkTallerSucursalEstacion_TallerSucursal">
+            <End Role="TallerSucursal" EntitySet="TallerSucursal" />
+            <End Role="TallerSucursalEstacion" EntitySet="TallerSucursalEstacion" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajo_TipoFactura" Association="Self.FK_Trabajo_TipoFactura">
+            <End Role="TipoFactura" EntitySet="TipoFactura" />
+            <End Role="Trabajo" EntitySet="Trabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Trabajo_Vehiculo" Association="Self.FK_Trabajo_Vehiculo">
+            <End Role="Vehiculo" EntitySet="Vehiculo" />
+            <End Role="Trabajo" EntitySet="Trabajo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajoExterno_Trabajo" Association="Self.FK_TrabajoExterno_Trabajo">
+            <End Role="Trabajo" EntitySet="Trabajo" />
+            <End Role="TrabajoExterno" EntitySet="TrabajoExterno" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajoManoObra_Trabajo" Association="Self.FK_TrabajoManoObra_Trabajo">
+            <End Role="Trabajo" EntitySet="Trabajo" />
+            <End Role="TrabajoManoObra" EntitySet="TrabajoManoObra" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajoPago_Trabajo" Association="Self.FK_TrabajoPago_Trabajo">
+            <End Role="Trabajo" EntitySet="Trabajo" />
+            <End Role="TrabajoPago" EntitySet="TrabajoPago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TrabajoParte_Trabajo" Association="Self.FK_TrabajoParte_Trabajo">
+            <End Role="Trabajo" EntitySet="Trabajo" />
+            <End Role="TrabajoParte" EntitySet="TrabajoParte" />
+          </AssociationSet>
+          <AssociationSet Name="TallerSistemas" Association="Self.TallerSistemas">
+            <End Role="Sistemas" EntitySet="Sistemas" />
+            <End Role="Taller" EntitySet="Taller" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SAMModelStoreContainer" CdmEntityContainer="Entities">
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="SAMModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="tipo_cliente" ColumnName="tipo_cliente" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="apellido" ColumnName="apellido" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="telefono1" ColumnName="telefono1" />
+                <ScalarProperty Name="telefono2" ColumnName="telefono2" />
+                <ScalarProperty Name="email" ColumnName="email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clienteTipo">
+            <EntityTypeMapping TypeName="SAMModel.clienteTipo">
+              <MappingFragment StoreEntitySet="clienteTipo">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="tipo_cliente" ColumnName="tipo_cliente" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ClienteVehiculo">
+            <EntityTypeMapping TypeName="SAMModel.ClienteVehiculo">
+              <MappingFragment StoreEntitySet="ClienteVehiculo">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="matricula_id" ColumnName="matricula_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Externo">
+            <EntityTypeMapping TypeName="SAMModel.Externo">
+              <MappingFragment StoreEntitySet="Externo">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="id_externo" ColumnName="id_externo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="detalle" ColumnName="detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ManoObra">
+            <EntityTypeMapping TypeName="SAMModel.ManoObra">
+              <MappingFragment StoreEntitySet="ManoObra">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="id_codigo" ColumnName="id_codigo" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="detalle" ColumnName="detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marca">
+            <EntityTypeMapping TypeName="SAMModel.Marca">
+              <MappingFragment StoreEntitySet="Marca">
+                <ScalarProperty Name="marca_id" ColumnName="marca_id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="pais" ColumnName="pais" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedioPago">
+            <EntityTypeMapping TypeName="SAMModel.MedioPago">
+              <MappingFragment StoreEntitySet="MedioPago">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="id_medioPago" ColumnName="id_medioPago" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Modelo">
+            <EntityTypeMapping TypeName="SAMModel.Modelo">
+              <MappingFragment StoreEntitySet="Modelo">
+                <ScalarProperty Name="modelo_id" ColumnName="modelo_id" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="marca_id" ColumnName="marca_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Parte">
+            <EntityTypeMapping TypeName="SAMModel.Parte">
+              <MappingFragment StoreEntitySet="Parte">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="id_parte" ColumnName="id_parte" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="precio" ColumnName="precio" />
+                <ScalarProperty Name="detalle" ColumnName="detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proceso">
+            <EntityTypeMapping TypeName="SAMModel.Proceso">
+              <MappingFragment StoreEntitySet="Proceso">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="id_proceso" ColumnName="id_proceso" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sistemas">
+            <EntityTypeMapping TypeName="SAMModel.Sistemas">
+              <MappingFragment StoreEntitySet="Sistemas">
+                <ScalarProperty Name="id_sistema" ColumnName="id_sistema" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Taller">
+            <EntityTypeMapping TypeName="SAMModel.Taller">
+              <MappingFragment StoreEntitySet="Taller">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="ciudad" ColumnName="ciudad" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="logotipo" ColumnName="logotipo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TallerParametro">
+            <EntityTypeMapping TypeName="SAMModel.TallerParametro">
+              <MappingFragment StoreEntitySet="TallerParametro">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="id_parametro" ColumnName="id_parametro" />
+                <ScalarProperty Name="nombre_parametro" ColumnName="nombre_parametro" />
+                <ScalarProperty Name="valor_parametro" ColumnName="valor_parametro" />
+                <ScalarProperty Name="descripcion_parametro" ColumnName="descripcion_parametro" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TallerSucursal">
+            <EntityTypeMapping TypeName="SAMModel.TallerSucursal">
+              <MappingFragment StoreEntitySet="TallerSucursal">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="id_taller_sucursal" ColumnName="id_taller_sucursal" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="activa" ColumnName="activa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TallerSucursalEstacion">
+            <EntityTypeMapping TypeName="SAMModel.TallerSucursalEstacion">
+              <MappingFragment StoreEntitySet="TallerSucursalEstacion">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="id_taller_sucursal" ColumnName="id_taller_sucursal" />
+                <ScalarProperty Name="id_estacion" ColumnName="id_estacion" />
+                <ScalarProperty Name="id_usuario_estacion" ColumnName="id_usuario_estacion" />
+                <ScalarProperty Name="activa" ColumnName="activa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TipoFactura">
+            <EntityTypeMapping TypeName="SAMModel.TipoFactura">
+              <MappingFragment StoreEntitySet="TipoFactura">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="tipoFactura1" ColumnName="tipoFactura" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Trabajo">
+            <EntityTypeMapping TypeName="SAMModel.Trabajo">
+              <MappingFragment StoreEntitySet="Trabajo">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="id_trabajo" ColumnName="id_trabajo" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="matricula_id" ColumnName="matricula_id" />
+                <ScalarProperty Name="creador" ColumnName="creador" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="tipoFactura" ColumnName="tipoFactura" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrabajoExterno">
+            <EntityTypeMapping TypeName="SAMModel.TrabajoExterno">
+              <MappingFragment StoreEntitySet="TrabajoExterno">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="id_trabajo" ColumnName="id_trabajo" />
+                <ScalarProperty Name="id_externo" ColumnName="id_externo" />
+                <ScalarProperty Name="precioExtra" ColumnName="precioExtra" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrabajoManoObra">
+            <EntityTypeMapping TypeName="SAMModel.TrabajoManoObra">
+              <MappingFragment StoreEntitySet="TrabajoManoObra">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="id_trabajo" ColumnName="id_trabajo" />
+                <ScalarProperty Name="id_codigo" ColumnName="id_codigo" />
+                <ScalarProperty Name="precioExtra" ColumnName="precioExtra" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="finalizado" ColumnName="finalizado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrabajoPago">
+            <EntityTypeMapping TypeName="SAMModel.TrabajoPago">
+              <MappingFragment StoreEntitySet="TrabajoPago">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="id_trabajo" ColumnName="id_trabajo" />
+                <ScalarProperty Name="id_medioPago" ColumnName="id_medioPago" />
+                <ScalarProperty Name="id_linea" ColumnName="id_linea" />
+                <ScalarProperty Name="monto" ColumnName="monto" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TrabajoParte">
+            <EntityTypeMapping TypeName="SAMModel.TrabajoParte">
+              <MappingFragment StoreEntitySet="TrabajoParte">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="id_trabajo" ColumnName="id_trabajo" />
+                <ScalarProperty Name="id_parte" ColumnName="id_parte" />
+                <ScalarProperty Name="precioExtra" ColumnName="precioExtra" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vehiculo">
+            <EntityTypeMapping TypeName="SAMModel.Vehiculo">
+              <MappingFragment StoreEntitySet="Vehiculo">
+                <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+                <ScalarProperty Name="matricula_id" ColumnName="matricula_id" />
+                <ScalarProperty Name="modelo_id" ColumnName="modelo_id" />
+                <ScalarProperty Name="marca_id" ColumnName="marca_id" />
+                <ScalarProperty Name="motorcc" ColumnName="motorcc" />
+                <ScalarProperty Name="serial" ColumnName="serial" />
+                <ScalarProperty Name="transmision" ColumnName="transmision" />
+                <ScalarProperty Name="tipoGas" ColumnName="tipoGas" />
+                <ScalarProperty Name="color" ColumnName="color" />
+                <ScalarProperty Name="aireAc" ColumnName="aireAc" />
+                <ScalarProperty Name="observaciones" ColumnName="observaciones" />
+                <ScalarProperty Name="modelo" ColumnName="modelo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="TallerSistemas" TypeName="SAMModel.TallerSistemas" StoreEntitySet="TallerSistemas">
+            <EndProperty Name="Sistemas">
+              <ScalarProperty Name="id_sistema" ColumnName="id_sistema" />
+            </EndProperty>
+            <EndProperty Name="Taller">
+              <ScalarProperty Name="id_taller" ColumnName="id_taller" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
